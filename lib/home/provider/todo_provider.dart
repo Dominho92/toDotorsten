@@ -4,11 +4,6 @@ import 'package:todo_torsten/home/repositorys/todo_repository.dart';
 
 class ToDoProvider extends ChangeNotifier {
   final ToDoRepository toDoRepository = ToDoRepository();
-  late List<ToDo> toDosMock;
-
-  Future<List<ToDo>> getTodo() async {
-    return await Future.value(toDosMock);
-  }
 
   void addToDo(ToDo toDo) {
     toDoRepository.addToDo(toDo);
