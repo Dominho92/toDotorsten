@@ -12,6 +12,6 @@ class ToDoRepository {
   removeToDo(ToDo toDo) {
     toDosMock.remove(toDo);
   }
-
-  List<ToDo> toDosMock = [];
 }
+
+List<ToDo> toDosMock = [];

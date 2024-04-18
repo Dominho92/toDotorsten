@@ -35,8 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Column(
             children: [
+              const SizedBox(height: 40),
               FutureBuilder(
-                future: provider.toDosMock,
+                future: toDosMock,
                 builder: (context, AsyncSnapshot<List<ToDo>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 50),
                   const AddToDoButton(),
                   const SizedBox(width: 20),
                   OutlinedButton(
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.bold)),
                         Container(
                           height: 2,
-                          width: 90,
+                          width: 80,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 15, 150, 180),
                           ),
