@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_torsten/home/models/todo.dart';
 import 'package:todo_torsten/home/provider/todo_provider.dart';
@@ -49,13 +50,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
+                        String formattedData = DateFormat('dd.MM.yyyy - kk:mm')
+                            .format(snapshot.data![index].creationDate);
                         return Container(
-                          color: const Color.fromARGB(107, 76, 76, 76),
+                          color: const Color.fromARGB(147, 76, 76, 76),
                           child: ListTile(
-                            title: Text(
-                              snapshot.data![index].title,
-                              style: const TextStyle(color: Colors.white),
+                            title: Padding(
+                              padding: const EdgeInsets.only(left: 3.0),
+                              child: Text(
+                                snapshot.data![index].title,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
+                            subtitle: Column(children: [
+                              const Divider(
+                                color: Colors.white,
+                                height: 10,
+                                thickness: 1,
+                                indent: 0,
+                                endIndent: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 72.0),
+                                child: Text(
+                                  "Erstellt am: $formattedData",
+                                  style: const TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 173, 173, 173)),
+                                ),
+                              )
+                            ]),
                             trailing: Checkbox(
                               fillColor:
                                   MaterialStateProperty.all(Colors.white),

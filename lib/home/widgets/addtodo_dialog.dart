@@ -43,6 +43,7 @@ class _CitySearchDialogState extends State<AddTodoDialog> {
                   Provider.of<ToDoProvider>(context, listen: false);
               provider.addToDo(ToDo(
                 title: toDoController.text,
+                creationDate: DateTime.now(),
                 isDone: false,
               ));
               Navigator.of(context).pop();
