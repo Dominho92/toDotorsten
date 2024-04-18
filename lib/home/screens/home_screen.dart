@@ -15,13 +15,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<ToDo>> toDosMock;
+  Future<List<ToDo>>? toDosMock;
 
   ToDoRepository toDoRepository = ToDoRepository();
+
+  ToDo? toDo;
+
+  void _loadSavedToDo() async {
+    final toDoFromRepo = await ToDoRepository().getSavedToDo();
+    if (toDoFromRepo != null) {
+      setState(() {
+        toDo = toDoFromRepo;
+      });
+    }
+  }
 
   @override
   void initState() {
     toDosMock = toDoRepository.getTodo();
+    _loadSavedToDo();
     super.initState();
   }
 
@@ -40,65 +52,67 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               const SizedBox(height: 40),
-              FutureBuilder(
-                future: toDosMock,
-                builder: (context, AsyncSnapshot<List<ToDo>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        String formattedData = DateFormat('dd.MM.yyyy - kk:mm')
-                            .format(snapshot.data![index].creationDate);
-                        return Container(
-                          color: const Color.fromARGB(147, 76, 76, 76),
-                          child: ListTile(
-                            title: Padding(
-                              padding: const EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                snapshot.data![index].title,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            subtitle: Column(children: [
-                              const Divider(
-                                color: Colors.white,
-                                height: 10,
-                                thickness: 1,
-                                indent: 0,
-                                endIndent: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 72.0),
+              if (toDosMock != null)
+                FutureBuilder(
+                  future: toDosMock,
+                  builder: (context, AsyncSnapshot<List<ToDo>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          String formattedData =
+                              DateFormat('dd.MM.yyyy - kk:mm')
+                                  .format(snapshot.data![index].creationDate);
+                          return Container(
+                            color: const Color.fromARGB(147, 76, 76, 76),
+                            child: ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.only(left: 3.0),
                                 child: Text(
-                                  "Erstellt am: $formattedData",
-                                  style: const TextStyle(
-                                      color:
-                                          Color.fromARGB(255, 173, 173, 173)),
+                                  snapshot.data![index].title,
+                                  style: const TextStyle(color: Colors.white),
                                 ),
-                              )
-                            ]),
-                            trailing: Checkbox(
-                              fillColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              checkColor: Colors.black,
-                              value: snapshot.data![index].isDone,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  snapshot.data![index].isDone = value!;
-                                  provider.removeToDo(snapshot.data![index]);
-                                });
-                              },
+                              ),
+                              subtitle: Column(children: [
+                                const Divider(
+                                  color: Colors.white,
+                                  height: 10,
+                                  thickness: 1,
+                                  indent: 0,
+                                  endIndent: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 72.0),
+                                  child: Text(
+                                    "Erstellt am: $formattedData",
+                                    style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 173, 173, 173)),
+                                  ),
+                                )
+                              ]),
+                              trailing: Checkbox(
+                                fillColor:
+                                    MaterialStateProperty.all(Colors.white),
+                                checkColor: Colors.black,
+                                value: snapshot.data![index].isDone,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    snapshot.data![index].isDone = value!;
+                                    provider.removeToDo(snapshot.data![index]);
+                                  });
+                                },
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -8,6 +8,7 @@ class ToDoProvider extends ChangeNotifier {
   void addToDo(ToDo toDo) {
     toDoRepository.addToDo(toDo);
     notifyListeners();
+    toDoRepository.saveTodo(toDo);
   }
 
   void removeToDo(ToDo toDo) {
