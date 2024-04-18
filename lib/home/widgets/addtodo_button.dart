@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_torsten/home/repositorys/todo_repository.dart';
 import 'package:todo_torsten/home/widgets/addtodo_dialog.dart';
 
 class AddToDoButton extends StatefulWidget {
@@ -8,8 +7,6 @@ class AddToDoButton extends StatefulWidget {
   @override
   State<AddToDoButton> createState() => _AddToDoButtonState();
 }
-
-final ToDoRepository toDoRepository = ToDoRepository();
 
 class _AddToDoButtonState extends State<AddToDoButton> {
   @override
