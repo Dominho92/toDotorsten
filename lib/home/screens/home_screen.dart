@@ -5,7 +5,7 @@ import 'package:todo_torsten/home/models/todo.dart';
 import 'package:todo_torsten/home/provider/todo_provider.dart';
 import 'package:todo_torsten/home/style/styles.dart';
 import 'package:todo_torsten/home/widgets/addtodo_button.dart';
-import 'package:todo_torsten/home/widgets/deletetodo_button.dart';
+import 'package:todo_torsten/home/widgets/deleteAlltodo_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   DeleteAllToDoButton(),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               const Padding(
                 padding: EdgeInsets.only(left: 30.0),
                 child: Text("Done ToDo's:",
