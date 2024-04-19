@@ -13,7 +13,7 @@ class _DeleteTodoDialogState extends State<DeleteTodoDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("ToDo's wirklich löschen??",
+      title: const Text("ToDo's wirklich löschen?",
           style: TextStyle(fontSize: 19)),
       content:
           const Text("Du löscht unwiderruflich alle ToDo's. Bist du sicher?"),
