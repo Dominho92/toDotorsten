@@ -18,7 +18,7 @@ class _RefreshToDoButtonState extends State<DeleteAllToDoButton> {
     return OutlinedButton(
       onPressed: () {
         final provider = Provider.of<ToDoProvider>(context, listen: false);
-        provider.deleteToDo();
+        provider.deleteAllToDo();
       },
       child: Column(
         children: [

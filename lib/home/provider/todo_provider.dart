@@ -15,13 +15,13 @@ class ToDoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateToDo(ToDo toDo) {
-    toDoRepository.updateToDo(toDo);
+  void deleteAllToDo() {
+    toDoRepository.deleteToDo();
     notifyListeners();
   }
 
-  void deleteToDo() {
-    toDoRepository.deleteToDo();
+  void updateToDo(ToDo toDo) {
+    toDoRepository.updateToDo(toDo);
     notifyListeners();
   }
 }
