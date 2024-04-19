@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_torsten/home/models/todo.dart';
 import 'package:todo_torsten/home/provider/todo_provider.dart';
-import 'package:todo_torsten/home/repositorys/todo_repository.dart';
 
 class AddTodoDialog extends StatefulWidget {
   const AddTodoDialog({super.key});
@@ -39,16 +38,10 @@ class _CitySearchDialogState extends State<AddTodoDialog> {
             },
             child: const Text("Schließen")),
         TextButton(
-            onPressed: () {
+            onPressed: () async {
               final provider =
                   Provider.of<ToDoProvider>(context, listen: false);
               provider.addToDo(ToDo(
-                title: toDoController.text,
-                creationDate: DateTime.now(),
-                isDone: false,
-              ));
-              final toDoRepository = ToDoRepository();
-              toDoRepository.saveTodo(ToDo(
                 title: toDoController.text,
                 creationDate: DateTime.now(),
                 isDone: false,

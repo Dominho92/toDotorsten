@@ -4,33 +4,35 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_torsten/home/models/todo.dart';
 
 class ToDoRepository {
-  Future<List<ToDo>> getTodo() async {
-    return await Future.value(toDosMock);
-  }
-
-  void addToDo(ToDo toDo) {
-    toDosMock.add(toDo);
-  }
-
-  removeToDo(ToDo toDo) {
-    toDosMock.remove(toDo);
-  }
-
-  Future<ToDo?> getSavedToDo() async {
+  Future<List<ToDo>> removeToDo(ToDo toDo) async {
+    final toDos = await getSavedToDo();
+    toDos.remove(toDo);
     final prefs = await SharedPreferences.getInstance();
-    final todoString = prefs.getString('toDo');
-    if (todoString == null) {
-      return null;
-    }
-    final todoMap = jsonDecode(todoString);
-    final todo = ToDo.fromJson(todoMap);
-    return todo;
+    final jsonList = toDos.map((e) => e.toJson()).toList();
+    await prefs.setString('toDo', jsonEncode(jsonList));
+    return toDos;
   }
 
-  Future<bool> saveTodo(ToDo todo) async {
+  Future<List<ToDo>> getSavedToDo() async {
     final prefs = await SharedPreferences.getInstance();
-    return await prefs.setString('toDo', jsonEncode(todo.toJson()));
+    final toDoString = prefs.getString('toDo');
+    if (toDoString == null) return [];
+    final jsonList = jsonDecode(toDoString) as List;
+    final toDos = jsonList.map((e) => ToDo.fromJson(e)).toList();
+    return toDos;
+  }
+
+  Future<List<ToDo>> addToDo(ToDo toDo) async {
+    final toDos = await getSavedToDo();
+    toDos.add(toDo);
+    final prefs = await SharedPreferences.getInstance();
+    final jsonList = toDos.map((e) => e.toJson()).toList();
+    await prefs.setString('toDo', jsonEncode(jsonList));
+    return toDos;
+  }
+
+  Future<void> deleteToDo() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('toDo');
   }
 }
-
-List<ToDo> toDosMock = [];
