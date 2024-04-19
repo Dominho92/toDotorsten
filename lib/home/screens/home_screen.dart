@@ -79,7 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 final provider = Provider.of<ToDoProvider>(
                                     context,
                                     listen: false);
-
                                 // snapshot.data![index].isDone = value!;
                                 provider.removeToDo(snapshot.data![index]);
                               },
