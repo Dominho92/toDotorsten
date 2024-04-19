@@ -26,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: customBG,
         child: Center(
-          child: Column(
+          child: ListView(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
               FutureBuilder(
                 future: context.watch<ToDoProvider>().toDoRepository.openTodos,
                 builder: (context, AsyncSnapshot<List<ToDo>> snapshot) {
@@ -105,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 },
               ),
+              const SizedBox(height: 20),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 50),
               const Padding(
-                padding: EdgeInsets.only(right: 200.0),
+                padding: EdgeInsets.only(left: 30.0),
                 child: Text("Done ToDo's:",
                     style: TextStyle(
                         color: Colors.white,
@@ -129,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 indent: 20,
                 endIndent: 40,
               ),
+              const SizedBox(height: 5),
               FutureBuilder(
                 future: context.watch<ToDoProvider>().toDoRepository.doneTodos,
                 builder: (context, AsyncSnapshot<List<ToDo>> snapshot) {
