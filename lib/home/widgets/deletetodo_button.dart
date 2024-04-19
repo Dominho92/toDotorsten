@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_torsten/home/provider/todo_provider.dart';
 import 'package:todo_torsten/home/repositorys/todo_repository.dart';
+import 'package:todo_torsten/home/widgets/deletetoto_dialog.dart';
 
 class DeleteAllToDoButton extends StatefulWidget {
   const DeleteAllToDoButton({super.key});
@@ -17,8 +16,12 @@ class _RefreshToDoButtonState extends State<DeleteAllToDoButton> {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        final provider = Provider.of<ToDoProvider>(context, listen: false);
-        provider.deleteAllToDo();
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const DeleteTodoDialog();
+          },
+        );
       },
       child: Column(
         children: [

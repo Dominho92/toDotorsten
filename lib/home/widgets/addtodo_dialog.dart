@@ -7,10 +7,10 @@ class AddTodoDialog extends StatefulWidget {
   const AddTodoDialog({super.key});
 
   @override
-  State<AddTodoDialog> createState() => _CitySearchDialogState();
+  State<AddTodoDialog> createState() => _AddTodoDialogState();
 }
 
-class _CitySearchDialogState extends State<AddTodoDialog> {
+class _AddTodoDialogState extends State<AddTodoDialog> {
   TextEditingController toDoController = TextEditingController();
 
   @override
