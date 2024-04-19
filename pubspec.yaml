@@ -1,5 +1,5 @@
 name: todo_torsten
-description: "A new Flutter project."
+description: "Tordy - A simple todo app for your daily tasks."
 publish_to: 'none'
 version: 0.1.0
 
@@ -20,6 +20,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  
 
 flutter:
   uses-material-design: true
