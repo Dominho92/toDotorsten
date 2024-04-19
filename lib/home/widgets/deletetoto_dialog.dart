@@ -29,6 +29,12 @@ class _DeleteTodoDialogState extends State<DeleteTodoDialog> {
                   Provider.of<ToDoProvider>(context, listen: false);
               provider.deleteAllToDo();
               Navigator.of(context).pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Alle ToDo's wurden gelöscht!"),
+                  duration: Duration(seconds: 2),
+                ),
+              );
             },
             child: const Text("Delete it all!")),
       ],

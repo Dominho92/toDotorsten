@@ -96,6 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     listen: false);
                                 provider.removeToDo(snapshot.data![index]);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("ToDo wurde gelöscht!"),
+                                    duration: Duration(seconds: 1),
+                                  ),
+                                );
                               },
                             ),
                           ),
@@ -198,6 +204,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     listen: false);
                                 provider.removeToDo(snapshot.data![index]);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("ToDo wurde gelöscht!"),
+                                    duration: Duration(seconds: 1),
+                                  ),
+                                );
                               },
                             ),
                           ),
