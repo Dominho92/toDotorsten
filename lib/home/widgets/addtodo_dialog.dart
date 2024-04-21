@@ -39,14 +39,19 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
             child: const Text("Schließen")),
         TextButton(
             onPressed: () async {
-              final provider =
-                  Provider.of<ToDoProvider>(context, listen: false);
-              provider.addToDo(ToDo(
-                title: toDoController.text,
-                creationDate: DateTime.now(),
-                isDone: false,
-              ));
-              Navigator.of(context).pop();
+              if (toDoController.text.isNotEmpty) {
+                final provider =
+                    Provider.of<ToDoProvider>(context, listen: false);
+                provider.addToDo(ToDo(
+                  title: toDoController.text,
+                  creationDate: DateTime.now(),
+                  isDone: false,
+                ));
+                Navigator.of(context).pop();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Bitte ToDo eingeben!")));
+              }
             },
             child: const Text("Hinzufügen")),
       ],
