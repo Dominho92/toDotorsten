@@ -5,7 +5,7 @@ import 'package:todo_torsten/home/models/todo.dart';
 import 'package:todo_torsten/home/provider/todo_provider.dart';
 import 'package:todo_torsten/home/style/styles.dart';
 import 'package:todo_torsten/home/widgets/addtodo_button.dart';
-import 'package:todo_torsten/home/widgets/deleteAlltodo_button.dart';
+import 'package:todo_torsten/home/widgets/delete_alltodo_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
